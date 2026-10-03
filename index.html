@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelby Store Artık Zentra Store!</title>
+    
+    <!-- Google Fonts: Orbitron for futuristic headings, Poppins for readable text -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #05050a;
+            --zentra-blue: #00d2ff;
+            --zentra-purple: #9b00ff;
+            --shelby-red: #ff3300;
+            --shelby-blue: #0066ff;
+            --text-light: #e0e0e0;
+            --warning-red: #ff003c;
+            --glass-bg: rgba(15, 15, 25, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 900px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(155, 0, 255, 0.15), inset 0 0 20px rgba(0, 210, 255, 0.05);
+            margin: 2rem 0;
+            animation: containerFadeIn 1s ease-out forwards;
+        }
+
+        @keyframes containerFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-transition-area {
+            position: relative;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .brand-text {
+            position: absolute;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+        }
+
+        /* Old Brand: Shelby Store */
+        .brand-old {
+            background: linear-gradient(45deg, var(--shelby-blue), var(--shelby-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 51, 0, 0.5);
+            animation: fadeOutOld 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* New Brand: Zentra Store */
+        .brand-new {
+            background: linear-gradient(45deg, var(--zentra-blue), var(--zentra-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInNew 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeOutOld {
+            0% { opacity: 1; transform: scale(1); filter: blur(0); }
+            40% { opacity: 1; transform: scale(1); filter: blur(0); }
+            60% { opacity: 0; transform: scale(1.1); filter: blur(10px); }
+            100% { opacity: 0; transform: scale(1.1); visibility: hidden; }
+        }
+
+        @keyframes fadeInNew {
+            0% { opacity: 0; transform: scale(0.8); filter: blur(10px); }
+            40% { opacity: 0; transform: scale(0.8); filter: blur(10px); }
+            70% { opacity: 1; transform: scale(1.05); filter: blur(0); text-shadow: 0 0 30px rgba(0, 210, 255, 0.8), 0 0 60px rgba(155, 0, 255, 0.6); }
+            100% { opacity: 1; transform: scale(1); text-shadow: 0 0 20px rgba(0, 210, 255, 0.6), 0 0 40px rgba(155, 0, 255, 0.4); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0a0b8;
+            margin-bottom: 2.5rem;
+            animation: fadeInDelay 4.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInDelay {
+            to { opacity: 1; }
+        }
+
+        .warning-box {
+            background: rgba(255, 0, 60, 0.1);
+            border: 2px solid var(--warning-red);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 0 25px rgba(255, 0, 60, 0.2), inset 0 0 15px rgba(255, 0, 60, 0.1);
+            animation: pulseWarning 2s infinite alternate;
+        }
+
+        @keyframes pulseWarning {
+            from { box-shadow: 0 0 15px rgba(255, 0, 60, 0.2), inset 0 0 10px rgba(255, 0, 60, 0.1); }
+            to { box-shadow: 0 0 30px rgba(255, 0, 60, 0.4), inset 0 0 20px rgba(255, 0, 60, 0.2); }
+        }
+
+        .warning-icon {
+            font-size: 2.5rem;
+            color: var(--warning-red);
+            text-shadow: 0 0 15px var(--warning-red);
+        }
+
+        .warning-text {
+            text-align: left;
+        }
+
+        .warning-text h3 {
+            color: var(--warning-red);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+        }
+
+        .warning-text p {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+        }
+
+        .cta-container {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInDelay 4.5s ease forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(90deg, #001133, #1a0033);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            border: 2px solid transparent;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, var(--zentra-blue), var(--zentra-purple), var(--zentra-blue));
+            z-index: -1;
+            border-radius: 50px;
+            background-size: 200% 200%;
+            animation: gradientBorder 3s linear infinite;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px; right: 2px; bottom: 2px;
+            background: var(--bg-dark);
+            z-index: -1;
+            border-radius: 50px;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(155, 0, 255, 0.5), 0 0 40px rgba(0, 210, 255, 0.4);
+            letter-spacing: 2px;
+        }
+
+        .cta-button:hover::after {
+            opacity: 0.7;
+        }
+
+        .social-section h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #a0a0b8;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInDelay 4.5s ease forwards;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeInDelay 4.5s ease forwards;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Custom Hover Colors for specific brands */
+        .social-btn.telegram:hover {
+            border-color: #0088cc;
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
+            color: #0088cc;
+        }
+
+        .social-btn.tiktok:hover {
+            border-color: #ff0050;
+            box-shadow: 0 5px 15px rgba(255, 0, 80, 0.3);
+            color: #ff0050;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem 1.5rem;
+                width: 95%;
+            }
+            .warning-box {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            .warning-text {
+                text-align: center;
+            }
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Particle Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="container">
+        
+        <!-- Brand Transition Animation -->
+        <div class="brand-transition-area">
+            <div class="brand-text brand-old">SHELBY STORE</div>
+            <div class="brand-text brand-new">ZENTRA STORE</div>
+        </div>
+
+        <p class="subtitle">İsmimiz, logomuz ve altyapımız tamamen yenilendi!</p>
+
+        <!-- Warning Box -->
+        <div class="warning-box">
+            <i class="fas fa-exclamation-triangle warning-icon"></i>
+            <div class="warning-text">
+                <h3>DOLANDIRICILARA İNANMAYINIZ!</h3>
+                <p>Resmi hesaplarımız dışında işlem yapmayın, kimseye para göndermeyin. Tek resmi adresimiz <strong>zentrastore.com.tr</strong>'dir.</p>
+            </div>
+        </div>
+
+        <!-- Main Call to Action -->
+        <div class="cta-container">
+            <a href="https://zentrastore.com.tr" class="cta-button">YENİ SİTEMİZE GİT</a>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="social-section">
+            <h4>Resmi Bağlantılarımız</h4>
+            <div class="social-grid">
+                <a href="https://t.me/+B_m6rCQxMhQ5MjFk" target="_blank" class="social-btn telegram">
+                    <i class="fab fa-telegram"></i> Telegram Kanalı
+                </a>
+                <a href="https://t.me/+t17sK4mUhbszZTM0" target="_blank" class="social-btn telegram">
+                    <i class="fas fa-shield-alt"></i> Güvence Kanalı
+                </a>
+                <a href="https://t.me/+chmRui3czAdhNTE0" target="_blank" class="social-btn telegram">
+                    <i class="fas fa-comments"></i> Sohbet Grubu
+                </a>
+                <a href="https://t.me/zentrastorefree" target="_blank" class="social-btn telegram">
+                    <i class="fas fa-gift"></i> Ücretsiz İçerikler
+                </a>
+                <a href="https://www.tiktok.com/@shelbystorelive" target="_blank" class="social-btn tiktok">
+                    <i class="fab fa-tiktok"></i> TikTok Hesabı
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const particleCount = 70;
+        
+        // Colors matching the Zentra theme (Blues and Purples)
+        const colors = [
+            'rgba(0, 210, 255, 0.6)', 
+            'rgba(155, 0, 255, 0.6)', 
+            'rgba(0, 102, 255, 0.5)'
+        ];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * -1.5 - 0.5; // Always float upwards slightly
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.glow = Math.random() * 15 + 5;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Reset position if goes off screen
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+                if (this.x > canvas.width || this.x < 0) {
+                    this.speedX = -this.speedX;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = this.glow;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            
+            requestAnimationFrame(animateParticles);
+        }
+
+        // Initialize and start animation
+        initParticles();
+        animateParticles();
+    </script>
+</body>
+</html>
