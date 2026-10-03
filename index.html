@@ -6,21 +6,21 @@
     <title>Shelby Store Artık Zentra Store!</title>
     
     <!-- Google Fonts: Orbitron for futuristic headings, Poppins for readable text -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- FontAwesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-dark: #05050a;
+            --bg-dark: #07070a;
             --zentra-blue: #00d2ff;
-            --zentra-purple: #9b00ff;
+            --zentra-purple: #5a32fa;
             --shelby-red: #ff3300;
             --shelby-blue: #0066ff;
             --text-light: #e0e0e0;
             --warning-red: #ff003c;
-            --glass-bg: rgba(15, 15, 25, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(12, 12, 18, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.03);
         }
 
         * {
@@ -54,82 +54,79 @@
         .container {
             position: relative;
             z-index: 1;
-            width: 90%;
-            max-width: 900px;
+            width: 92%;
+            max-width: 600px;
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border-radius: 20px;
             padding: 3rem 2rem;
             text-align: center;
-            box-shadow: 0 0 40px rgba(155, 0, 255, 0.15), inset 0 0 20px rgba(0, 210, 255, 0.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             margin: 2rem 0;
             animation: containerFadeIn 1s ease-out forwards;
         }
 
         @keyframes containerFadeIn {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .brand-transition-area {
             position: relative;
-            height: 120px;
+            height: 80px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .brand-text {
             position: absolute;
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 6vw, 4.5rem);
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
             width: 100%;
         }
 
-        /* Old Brand: Shelby Store */
         .brand-old {
             background: linear-gradient(45deg, var(--shelby-blue), var(--shelby-red));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 51, 0, 0.5);
-            animation: fadeOutOld 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            text-shadow: 0 0 15px rgba(255, 51, 0, 0.4);
+            animation: fadeOutOld 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
-        /* New Brand: Zentra Store */
         .brand-new {
-            background: linear-gradient(45deg, var(--zentra-blue), var(--zentra-purple));
+            background: linear-gradient(90deg, var(--zentra-blue), #9b00ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             opacity: 0;
-            transform: scale(0.8);
-            animation: fadeInNew 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            transform: scale(0.9);
+            animation: fadeInNew 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         @keyframes fadeOutOld {
-            0% { opacity: 1; transform: scale(1); filter: blur(0); }
-            40% { opacity: 1; transform: scale(1); filter: blur(0); }
-            60% { opacity: 0; transform: scale(1.1); filter: blur(10px); }
-            100% { opacity: 0; transform: scale(1.1); visibility: hidden; }
+            0%, 30% { opacity: 1; transform: scale(1); filter: blur(0); }
+            60% { opacity: 0; transform: scale(1.05); filter: blur(8px); }
+            100% { opacity: 0; transform: scale(1.05); visibility: hidden; }
         }
 
         @keyframes fadeInNew {
-            0% { opacity: 0; transform: scale(0.8); filter: blur(10px); }
-            40% { opacity: 0; transform: scale(0.8); filter: blur(10px); }
-            70% { opacity: 1; transform: scale(1.05); filter: blur(0); text-shadow: 0 0 30px rgba(0, 210, 255, 0.8), 0 0 60px rgba(155, 0, 255, 0.6); }
-            100% { opacity: 1; transform: scale(1); text-shadow: 0 0 20px rgba(0, 210, 255, 0.6), 0 0 40px rgba(155, 0, 255, 0.4); }
+            0%, 40% { opacity: 0; transform: scale(0.9); filter: blur(8px); }
+            70% { opacity: 1; transform: scale(1.02); filter: blur(0); text-shadow: 0 0 25px rgba(0, 210, 255, 0.6); }
+            100% { opacity: 1; transform: scale(1); text-shadow: 0 0 15px rgba(0, 210, 255, 0.5); }
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            color: #a0a0b8;
+            font-size: 1rem;
+            color: #8e8e9f;
             margin-bottom: 2.5rem;
-            animation: fadeInDelay 4.5s ease forwards;
+            font-weight: 300;
+            animation: fadeInDelay 4s ease forwards;
             opacity: 0;
         }
 
@@ -138,179 +135,143 @@
         }
 
         .warning-box {
-            background: rgba(255, 0, 60, 0.1);
-            border: 2px solid var(--warning-red);
+            background: rgba(20, 0, 5, 0.6);
+            border: 1px solid var(--warning-red);
             border-radius: 12px;
             padding: 1.5rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            justify-content: center;
+            gap: 0.8rem;
             margin-bottom: 3rem;
-            box-shadow: 0 0 25px rgba(255, 0, 60, 0.2), inset 0 0 15px rgba(255, 0, 60, 0.1);
-            animation: pulseWarning 2s infinite alternate;
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.15), inset 0 0 10px rgba(255, 0, 60, 0.1);
+            animation: pulseWarning 2.5s infinite alternate;
         }
 
         @keyframes pulseWarning {
-            from { box-shadow: 0 0 15px rgba(255, 0, 60, 0.2), inset 0 0 10px rgba(255, 0, 60, 0.1); }
-            to { box-shadow: 0 0 30px rgba(255, 0, 60, 0.4), inset 0 0 20px rgba(255, 0, 60, 0.2); }
+            from { box-shadow: 0 0 15px rgba(255, 0, 60, 0.15), inset 0 0 10px rgba(255, 0, 60, 0.05); }
+            to { box-shadow: 0 0 25px rgba(255, 0, 60, 0.3), inset 0 0 15px rgba(255, 0, 60, 0.15); }
         }
 
         .warning-icon {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--warning-red);
-            text-shadow: 0 0 15px var(--warning-red);
-        }
-
-        .warning-text {
-            text-align: left;
+            text-shadow: 0 0 10px var(--warning-red);
         }
 
         .warning-text h3 {
             color: var(--warning-red);
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
             letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 0, 60, 0.3);
         }
 
         .warning-text p {
-            font-size: 0.95rem;
-            color: #e0e0e0;
+            font-size: 0.85rem;
+            color: #b0b0c0;
+            line-height: 1.5;
+        }
+        
+        .warning-text strong {
+            color: #fff;
+            font-weight: 500;
         }
 
         .cta-container {
             margin-bottom: 3rem;
             opacity: 0;
-            animation: fadeInDelay 4.5s ease forwards;
+            animation: fadeInDelay 4s ease forwards;
         }
 
         .cta-button {
             display: inline-block;
             text-decoration: none;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: #fff;
-            background: linear-gradient(90deg, #001133, #1a0033);
-            padding: 1rem 3rem;
+            background: transparent;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
-            border: 2px solid transparent;
+            border: 2px solid var(--zentra-purple);
             position: relative;
-            z-index: 1;
-            overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(45deg, var(--zentra-blue), var(--zentra-purple), var(--zentra-blue));
-            z-index: -1;
-            border-radius: 50px;
-            background-size: 200% 200%;
-            animation: gradientBorder 3s linear infinite;
-        }
-
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: 2px; left: 2px; right: 2px; bottom: 2px;
-            background: var(--bg-dark);
-            z-index: -1;
-            border-radius: 50px;
-            transition: opacity 0.3s ease;
-        }
-
-        @keyframes gradientBorder {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            box-shadow: 0 0 15px rgba(90, 50, 250, 0.3), inset 0 0 10px rgba(90, 50, 250, 0.2);
+            letter-spacing: 1px;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(155, 0, 255, 0.5), 0 0 40px rgba(0, 210, 255, 0.4);
-            letter-spacing: 2px;
-        }
-
-        .cta-button:hover::after {
-            opacity: 0.7;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(90, 50, 250, 0.5), inset 0 0 15px rgba(90, 50, 250, 0.3);
+            background: rgba(90, 50, 250, 0.1);
         }
 
         .social-section h4 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            color: #a0a0b8;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #6a6a80;
+            margin-bottom: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             opacity: 0;
-            animation: fadeInDelay 4.5s ease forwards;
+            animation: fadeInDelay 4s ease forwards;
         }
 
         .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
             opacity: 0;
-            animation: fadeInDelay 4.5s ease forwards;
+            animation: fadeInDelay 4s ease forwards;
         }
 
         .social-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 0.8rem 1rem;
+            gap: 12px;
+            padding: 1rem;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            color: #d0d0e0;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-weight: 400;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
+            width: 100%;
         }
 
         .social-btn i {
             font-size: 1.2rem;
+            color: #8e8e9f;
+            transition: color 0.3s ease;
         }
 
         .social-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateY(-2px);
         }
 
-        /* Custom Hover Colors for specific brands */
-        .social-btn.telegram:hover {
-            border-color: #0088cc;
-            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
-            color: #0088cc;
-        }
-
-        .social-btn.tiktok:hover {
-            border-color: #ff0050;
-            box-shadow: 0 5px 15px rgba(255, 0, 80, 0.3);
-            color: #ff0050;
-        }
+        .social-btn.telegram:hover i { color: #0088cc; }
+        .social-btn.tiktok:hover i { color: #ff0050; }
 
         @media (max-width: 600px) {
             .container {
-                padding: 2rem 1.5rem;
+                padding: 2.5rem 1.2rem;
                 width: 95%;
             }
-            .warning-box {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
+            .warning-text p {
+                font-size: 0.8rem;
             }
-            .warning-text {
-                text-align: center;
-            }
-            .social-grid {
-                grid-template-columns: 1fr;
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -346,7 +307,7 @@
 
         <!-- Social Media Links -->
         <div class="social-section">
-            <h4>Resmi Bağlantılarımız</h4>
+            <h4>RESMİ BAĞLANTILARIMIZ</h4>
             <div class="social-grid">
                 <a href="https://t.me/+B_m6rCQxMhQ5MjFk" target="_blank" class="social-btn telegram">
                     <i class="fab fa-telegram"></i> Telegram Kanalı
@@ -373,13 +334,12 @@
         const ctx = canvas.getContext('2d');
 
         let particles = [];
-        const particleCount = 70;
+        const particleCount = 50; // Azaltılmış partikül sayısı daha profesyonel durur
         
-        // Colors matching the Zentra theme (Blues and Purples)
         const colors = [
-            'rgba(0, 210, 255, 0.6)', 
-            'rgba(155, 0, 255, 0.6)', 
-            'rgba(0, 102, 255, 0.5)'
+            'rgba(0, 210, 255, 0.4)', 
+            'rgba(90, 50, 250, 0.4)', 
+            'rgba(255, 255, 255, 0.1)'
         ];
 
         function resizeCanvas() {
@@ -394,18 +354,17 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.5 + 0.5;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * -1.5 - 0.5; // Always float upwards slightly
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * -1 - 0.2;
                 this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.glow = Math.random() * 15 + 5;
+                this.glow = Math.random() * 10 + 2;
             }
 
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Reset position if goes off screen
                 if (this.y < 0) {
                     this.y = canvas.height;
                     this.x = Math.random() * canvas.width;
@@ -443,7 +402,6 @@
             requestAnimationFrame(animateParticles);
         }
 
-        // Initialize and start animation
         initParticles();
         animateParticles();
     </script>
