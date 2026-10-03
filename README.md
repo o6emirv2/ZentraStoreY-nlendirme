@@ -1,2 +1,0 @@
-# ZentraStoreY-nlendirme
-YÖNELNDİRME
